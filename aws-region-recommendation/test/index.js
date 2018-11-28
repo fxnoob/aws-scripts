@@ -1,3 +1,8 @@
 const lib = require("../");
 
-console.log(lib.getRegionRecommendation("bankofindia.co.in"));
+
+lib.getRegionRecommendation("bankofindia.co.in").then(function(res){
+    console.log(res);
+}).catch(function(err){
+    console.log(err);
+});
