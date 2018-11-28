@@ -1,0 +1,16 @@
+{
+  "name": "nearestawsrdsregion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "geoip-lite": "^1.3.5",
+    "host-to-ip": "^0.3.2",
+    "sort-by-distance": "^1.0.1"
+  }
+}
