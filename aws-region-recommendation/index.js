@@ -183,21 +183,21 @@ const geoPoints =[
         "regiontag": "us-gov-west-1"
     }
 ];
-function getRegionRecommendation(rdsEndpoint){
-    return new Promise(function(resolve,reject){
-        hostToIp(rdsEndpoint).then(function(ip){
+function getRegionRecommendation(rdsEndpoint) {
+    return new Promise(function (resolve, reject) {
+        hostToIp(rdsEndpoint).then(function (ip) {
             var geo = geoip.lookup(ip);
             const opts = {
                 yName: 'lat',
                 xName: 'long'
             };
-            const origin = { lat: geo.ll[0], long: geo.ll[1]};
+            const origin = {lat: geo.ll[0], long: geo.ll[1]};
             resolve(sortByDistance(origin, geoPoints, opts)[0].regiontag);
-        }).catch(function(err){
-           reject(err);
+        }).catch(function (err) {
+            reject(err);
         });
     });
-
+}
 
 module.exports = {
 	getRegionRecommendation
