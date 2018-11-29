@@ -6,3 +6,4 @@
 > input: url
 
 > output: aws region tag  
+> https://www.npmjs.com/package/aws-region-recommendation
