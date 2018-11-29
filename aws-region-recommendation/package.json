@@ -1,5 +1,6 @@
 {
   "name": "aws-region-recommendation",
+  "homepage": "https://github.com/fxnoob/aws-scripts/tree/master/aws-region-recommendation",
   "version": "1.2.0",
   "description": "Best aws region recommendation based on given url/ip location",
   "main": "index.js",
