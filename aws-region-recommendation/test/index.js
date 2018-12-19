@@ -1,8 +1,9 @@
 const lib = require("../");
 
-
-lib.getRegionRecommendation("bankofindia.co.in").then(function(res){
+lib('rds.us-east-2.amazonaws.com')
+.then((res) =>{
     console.log(res);
-}).catch(function(err){
+})
+.catch((err)=>{
     console.log(err);
 });

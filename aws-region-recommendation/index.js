@@ -1,6 +1,9 @@
-const hostToIp = require('host-to-ip');
+
 const sortByDistance = require('sort-by-distance');
 const geoip = require('geoip-lite');
+const dnsSocket = require('dns-socket');
+const socket = dnsSocket();
+const isIp = require("is-ip");
 const geoPoints =[
     {
         "url": "rds.us-east-2.amazonaws.com",
@@ -183,7 +186,37 @@ const geoPoints =[
         "regiontag": "us-gov-west-1"
     }
 ];
+
+function hostToIp(url) {
+    return new Promise(function(resolve, reject) {
+            socket.query({
+              questions: [{
+                type: 'A',
+                name: url
+              }]
+            }, 53, '8.8.8.8', (err, res) => {
+                if(err)
+                    reject(err);
+                else{
+                    if (res.answers.length>0)  {
+                        let ips = "";
+                        for( const tuple of res.answers ) {
+                                if (isIp(tuple.data)) {
+                                    ips = tuple.data;
+                                    break;
+                                }
+                        }
+                        resolve(ips);
+                    } else {
+                        reject("No dns record found");
+                    }
+                }
+            });
+    });
+}
+
 function getRegionRecommendation(rdsEndpoint) {
+	
     return new Promise(function (resolve, reject) {
         hostToIp(rdsEndpoint).then(function (ip) {
             var geo = geoip.lookup(ip);
@@ -199,6 +232,4 @@ function getRegionRecommendation(rdsEndpoint) {
     });
 }
 
-module.exports = {
-	getRegionRecommendation
-};
+module.exports = getRegionRecommendation;

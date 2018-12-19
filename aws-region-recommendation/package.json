@@ -1,7 +1,7 @@
 {
   "name": "aws-region-recommendation",
   "homepage": "https://github.com/fxnoob/aws-scripts/tree/master/aws-region-recommendation",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Best aws region recommendation based on given url/ip location",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,9 @@
   "author": "fxnoob <fxnoob71@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "dns-socket": "^4.1.1",
     "geoip-lite": "^1.3.5",
-    "host-to-ip": "^0.3.2",
+    "is-ip": "^2.0.0",
     "sort-by-distance": "^1.0.1"
   }
 }
